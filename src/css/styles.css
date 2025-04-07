@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Evita problemas con el tamaño */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    background-color: rgb(27, 27, 27);
+    height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+   
+}
+header{
+    height: 25%;
+    background-color: white;
+    text-align: center;
+    margin: 0,auto;
+    padding: 0;
+}
+
+
+header img{
+    width: 100%;
+    max-width: 120px;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.titulo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0px;
+
+}
+.contenedorCard{
+    margin: 20px 30px 10px 30px;
+    max-width: 95%;
+}
+
+.cardFondo{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 5px 3px 3px rgba(5, 0, 0, 0.616);
+    width: 220px;
+    height: auto;
+    overflow: hidden;
+}
+
+.modalFondo{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 5px 3px 3px rgba(5, 0, 0, 0.616);
+}
+
+.textoBlanco{
+    color: white !important;
+}
+
+.imagenCard{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.nombreLink{
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.nombreLink:hover{
+    color: chocolate !important;
+}
