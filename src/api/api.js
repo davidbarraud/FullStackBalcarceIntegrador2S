@@ -19,5 +19,20 @@ export const api = {
 
      url(){
         return BASE_URL;
-    }
+    },
+
+    async getApiPaginacion(pagina) {
+        try {
+            const url = `${BASE_URL}?page=${pagina}`;
+            const res = await fetch(url);
+            if (!res.ok) {
+                throw new Error(`HTTP Error. Status: ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.error(err);
+            return { error: true, status: err.status, message: err.message };
+        }
+    },
 };

@@ -72,3 +72,10 @@ header img{
 .nombreLink:hover{
     color: chocolate !important;
 }
+
+.filtrado{
+    height: 50px;
+    background-color: rgb(48, 47, 47);
+    box-shadow: 5px 3px 3px rgba(5, 0, 0, 0.616);
+    padding-top: 15px;
+}
