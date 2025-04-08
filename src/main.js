@@ -61,28 +61,22 @@ let paginaActual = paginaInicial;
 async function paginar(pagina) {
     const apiInfo = await api.getApiPaginacion(pagina);
     // const urlApi =  api.url();
-    
     if (apiInfo.error) {
         console.error(`Error: ${apiInfo.status} - ${apiInfo.message}`);
         return;
     }
-     // Limpiar el contenedor antes de mostrar los nuevos
-    cardContenedor.innerHTML = "";
-
-
-    apiInfo.results.forEach(e => {
-      crearCard(e.id);
-    });
-
-    // Actualizar número de página mostrado
-      document.getElementById("textoBotones").textContent = `${pagina} de ${totalPaginas}`;
-
-  // Actualizar estado de botones
-      document.getElementById("botonAnterior").disabled = (pagina === paginaInicial);
-      document.getElementById("botonSiguiente").disabled = (pagina === totalPaginas);
-
+    // Limpiar el contenedor antes de mostrar los nuevos
+   cardContenedor.innerHTML = "";
+   apiInfo.results.forEach(e => {
+     crearCard(e.id);
+   });
+   // Actualizar número de página mostrado
+   document.getElementById("textoBotones").textContent = `${pagina} de ${totalPaginas}`;
+   // Actualizar estado de botones
+       document.getElementById("botonAnterior").disabled = (pagina === paginaInicial);
+       document.getElementById("botonSiguiente").disabled = (pagina === totalPaginas);
 };
-
+ 
 // Comportamiento de los botones
 document.getElementById("botonAnterior").addEventListener("click", () => {
   if (paginaActual > 1) {
@@ -100,17 +94,17 @@ document.getElementById("botonSiguiente").addEventListener("click", () => {
 
 //Activar o desactivar los Selects
 const checkEstado = document.getElementById("checkEstado");
-  const selectEstado = document.getElementById("selectEstado");
+const selectEstado = document.getElementById("selectEstado");
 
-  const checkGenero = document.getElementById("checkGenero");
-  const selectGenero = document.getElementById("selectGenero");
+const checkGenero = document.getElementById("checkGenero");
+const selectGenero = document.getElementById("selectGenero");
 
-  checkEstado.addEventListener("change", () => {
-    selectEstado.disabled = !checkEstado.checked;
-  });
+checkEstado.addEventListener("change", () => {
+  selectEstado.disabled = !checkEstado.checked;
+});
 
-  checkGenero.addEventListener("change", () => {
-    selectGenero.disabled = !checkGenero.checked;
+checkGenero.addEventListener("change", () => {
+  selectGenero.disabled = !checkGenero.checked;
   });
 
 
@@ -137,10 +131,7 @@ function manejarFiltro() {
 
   if (aplicarFiltro) {
     aplicarFiltros();
-    /* // Desactivar botones
-    botonAnterior.disabled = true;
-    botonSiguiente.disabled = true;
-    textoBotones.textContent = "Filtrado activo"; */
+    
   } else {
     // Restaurar paginación
     paginaActual = 1;
