@@ -20,7 +20,7 @@ let filtroGenero = "";
 let filtrosActivos = false;
 
 
-//Crear una card usando la API y creando también el modal
+//Crear una card usando la API y creando también el modal con código html que crea la propia función.
 
   async function crearCard(id) {
         const apiInfo = await api.getApiInfo(id);
@@ -76,7 +76,9 @@ async function paginar(pagina) {
       }
         // Limpiar el contenedor antes de mostrar los nuevos
       cardContenedor.innerHTML = "";
-      apiInfo.results.forEach(e =>  crearCard(e.id));
+      for (const elemento of apiInfo.results) {
+        await crearCard(elemento.id);
+      }
       actualizarBotones(pagina, apiInfo.info.pages);
 };
 
@@ -96,7 +98,10 @@ async function aplicarFiltros(pagina = 1) {
       return;
     }
     totalPaginas = data.info.pages;
-    data.results.forEach(personaje => crearCard(personaje.id));
+    for (const personaje of data.results) {
+        await crearCard(personaje.id);
+    }
+   // data.results.forEach(personaje => crearCard(personaje.id));
     actualizarBotones(pagina, totalPaginas);
   } catch (error) {
     console.error("Error al aplicar filtros:", error);
@@ -105,6 +110,8 @@ async function aplicarFiltros(pagina = 1) {
 
 
 //Función para actualizar el estado de los botones Anterior y Siguiente y el texto entre medio
+//si el número de la página es 1, entonces a la propiedad disabled del botónAnterior se le asigna un true.
+// y si el valor de la página es igual al total se le asigna el valor true al botonSiguiente. Con esto se deshabilitan los botones
 function actualizarBotones(pagina, total) {
   textoBotones.textContent = `${pagina} de ${total}`;
   botonAnterior.disabled = (pagina === 1);
