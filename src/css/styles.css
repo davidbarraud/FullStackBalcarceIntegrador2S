@@ -74,8 +74,26 @@ header img{
 }
 
 .filtrado{
-    height: 50px;
+    
     background-color: rgb(48, 47, 47);
     box-shadow: 5px 3px 3px rgba(5, 0, 0, 0.616);
     padding-top: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 2em;
+    }
+    .filtrado {
+        flex-direction: column;
+        align-items: stretch;
+      }
+}
+@media (max-width: 480px) {
+    .titulo {
+        font-size: 1.5em;
+    }
 }
