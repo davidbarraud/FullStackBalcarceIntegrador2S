@@ -22,9 +22,11 @@ let filtrosActivos = false;
 
 //Crear una card usando la API y creando también el modal con código html que crea la propia función.
 
-  async function crearCard(id) {
-        const apiInfo = await api.getApiInfo(id);
-        const { name, status, species, type, gender, image } = apiInfo;
+  async function crearCard(personaje) {
+        const apiInfo = personaje;
+       // const apiInfo = await api.getApiInfo(id);
+       //ya no se usa esta llamada porque traía 20 veces a los personajes por cada card que se crea.
+        const { id, name, status, species, type, gender, image } = apiInfo;
         if (apiInfo.error) {
             console.error(`Error: ${apiInfo.status} - ${apiInfo.message}`);
             return;
@@ -77,7 +79,7 @@ async function paginar(pagina) {
         // Limpiar el contenedor antes de mostrar los nuevos
       cardContenedor.innerHTML = "";
       for (const elemento of apiInfo.results) {
-        await crearCard(elemento.id);
+        await crearCard(elemento);
       }
       actualizarBotones(pagina, apiInfo.info.pages);
 };
@@ -99,7 +101,7 @@ async function aplicarFiltros(pagina = 1) {
     }
     totalPaginas = data.info.pages;
     for (const personaje of data.results) {
-        await crearCard(personaje.id);
+        await crearCard(personaje);
     }
    // data.results.forEach(personaje => crearCard(personaje.id));
     actualizarBotones(pagina, totalPaginas);
